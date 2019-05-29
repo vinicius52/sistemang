@@ -18,6 +18,7 @@ import { AuthGuard } from "./guards/auth.guard";
 import { LoginService } from "./login/login.service"
 
 import { environment } from '../environments/environment';
+import { ProdutoComponent } from './produto/produto.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     ClienteComponent,
-    LoginComponent    
+    LoginComponent,
+    ProdutoComponent
   ],
   providers: [AuthGuard, LoginService, AngularFireModule, AngularFireAuth],
   bootstrap: [AppComponent]
