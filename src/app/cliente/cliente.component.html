@@ -20,7 +20,7 @@
         [(ngModel)]="cliente.dataNascimento">
     </div>
     <button class="btn btn-primary" (click)="salvar()">Salvar</button> 
-</form>`
+</form>
 
 <table class="table">
     <thead>
@@ -35,6 +35,7 @@
             <td>{{ cliente.key }}</td>
             <td>{{ cliente.nome }}</td>
             <td>{{ cliente.dataNascimento }}</td>
+            <button class="btn btn-primary" (click)="excluir()">Excluir</button> 
         </tr>
     </tbody>
 </table>

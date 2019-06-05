@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { OnInit, Component } from '@angular/core';
 import { Cliente } from './cliente.model';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
 
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
@@ -40,6 +40,17 @@ export class ClienteComponent implements OnInit {
                 console.log(result.key);
             });
             this.cliente = new Cliente(null,null,null);
+    }
+
+    excluir(key:string){
+        if (confirm('Deseja realmente excluir ?')){
+        this.db.list('cliente').remove(key)
+            .then((result: any) => {
+                console.log(result.key);
+            });
+            this.cliente = new Cliente(null, null, null);
+        /*alert(key);*/
+        }
     }
 
     listar() {        

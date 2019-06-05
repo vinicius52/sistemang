@@ -8,6 +8,6 @@ export class Produto {
 
     key: Number;
     nome: String;
-    preco:any;
+    preco:number;
 
 }
