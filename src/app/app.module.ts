@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ClienteComponent } from './cliente/cliente.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login/login.component'; /* 1° importar o Login Component e depois importar 
+no imports*/
 
 import { FormsModule } from '@angular/forms';
 

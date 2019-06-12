@@ -3,13 +3,13 @@ import { OnInit, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'
 
-import { LoginService } from './login.service';
+import { LoginService } from './login.service'; //
 
-@Component({
+@Component({ /* Ele precisa conectar com o login service*/
     selector: 'login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css'],
-    providers: [LoginService]
+    providers: [LoginService] // Contém um vetor de login para todos esses componentes, ou seja o login
 })
 
 @NgModule({

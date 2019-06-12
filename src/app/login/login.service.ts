@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+// O service conversa com os serviços internos
+import { Injectable } from '@angular/core'; // cria o serviço automaticamente
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { Router } from "@angular/router";
 
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs'; // faz o login de forma assincrona
 
 import * as firebase from 'firebase/app';
 import { AngularFireAuth  } from '@angular/fire/auth';
@@ -23,7 +24,7 @@ export class LoginService {
 
             this.afAuth.auth.signInWithEmailAndPassword(mail, password).then((user) => {
 
-                localStorage['token'] = user.credential;
+                localStorage['user'] = user.credential;
                 this.router.navigate(['']);
                 console.log(user);
 
