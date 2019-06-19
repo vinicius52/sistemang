@@ -20,6 +20,7 @@ import { LoginService } from "./login/login.service"
 
 import { environment } from '../environments/environment';
 import { ProdutoComponent } from './produto/produto.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProdutoComponent } from './produto/produto.component';
     AngularFireDatabaseModule,
     ClienteComponent,
     LoginComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    CadastroComponent
   ],
   providers: [AuthGuard, LoginService, AngularFireModule, AngularFireAuth],
   bootstrap: [AppComponent]

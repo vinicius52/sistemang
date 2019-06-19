@@ -35,16 +35,27 @@ export class ClienteComponent implements OnInit {
     }
 
     salvar() {
-        this.db.list('cliente').push(this.cliente)
+        if (this.cliente.key == null) {
+            this.db.list('clientes').push(this.cliente)
+                .then((result: any) => {
+                    console.log(result.key);
+                });            
+        } else {
+            this.db.list('clientes').update(this.cliente.key,this.cliente)
             .then((result: any) => {
                 console.log(result.key);
-            });
-            this.cliente = new Cliente(null,null,null);
+            });  
+        }
+    }
+
+    carregar(cliente:Cliente) {
+        this.cliente = new Cliente(cliente.key,
+            cliente.nome, cliente.dataNascimento);
     }
 
     excluir(key:string){
         if (confirm('Deseja realmente excluir ?')){
-        this.db.list('cliente').remove(key)
+        this.db.list('clientes').remove(key)
             .then((result: any) => {
                 console.log(result.key);
             });
@@ -62,7 +73,7 @@ export class ClienteComponent implements OnInit {
     }
 
     getAll() : Observable<any[]> {
-        return this.db.list('cliente')
+        return this.db.list('clientes')
           .snapshotChanges()
           .pipe(
             map(changes => {

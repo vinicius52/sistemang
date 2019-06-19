@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { OnInit, Component } from '@angular/core';
-import { Produto } from './produto.model';
+import { Cadastro } from './cadastro.model';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
 
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
@@ -11,70 +11,69 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-    selector: 'produto',
-    templateUrl: './produto.component.html',
-    styleUrls: ['./produto.component.css']
+    selector: 'cadastro',
+    templateUrl: './cadastro.component.html',
+    styleUrls: ['./cadastro.component.css']
 })
 
 @NgModule({
     imports: [FormsModule, CommonModule],
-    declarations: [ProdutoComponent]
+    declarations: [CadastroComponent]
 })
 
-export class ProdutoComponent implements OnInit {
+export class CadastroComponent implements OnInit {
 
-    produto: Produto;
-    produtosRef: AngularFireList<any>;
-    produtos: any[];
+    cadastro: Cadastro;
+    cadastroRef: AngularFireList<any>;
+    cadastros: any[];
 
     constructor(private db: AngularFireDatabase) { }
 
     ngOnInit(): void {
-        this.produto = new Produto(null,null,null);
+        this.cadastro = new Cadastro(null,null,null);
         this.listar();
     }
 
     salvar() {
-        if (this.produto.key == null) {
-            this.db.list('produtos').push(this.produto)
+        if (this.cadastro.key == null) {
+            this.db.list('cadastros').push(this.cadastro)
                 .then((result: any) => {
                     console.log(result.key);
                 });            
         } else {
-            this.db.list('produtos').update(this.produto.key,this.produto)
+            this.db.list('cadastros').update(this.cadastro.key,this.cadastro)
             .then((result: any) => {
                 console.log(result.key);
             });  
         }
     }
 
-    carregar(produto:Produto) {
-        this.produto = new Produto(produto.key,
-            produto.nome, produto.preco);
+    carregar(cadastro:Cadastro) {
+        this.cadastro = new Cadastro(cadastro.key,
+            cadastro.nome, cadastro.quantidade);
     }
 
     excluir(key:string){
         if (confirm('Deseja realmente excluir ?')){
-        this.db.list('produtos').remove(key)
+        this.db.list('cadastros').remove(key)
             .then((result: any) => {
                 console.log(result.key);
             });
-            this.produto = new Produto(null, null, null);
+            this.cadastro = new Cadastro(null, null, null);
         /*alert(key);*/
         }
     }
 
-    listar() {
-           
+    listar() {        
         this.getAll().subscribe(
-            produtos => this.produtos = produtos,
+            cadastros => this.cadastros = cadastros,
             error => alert(error),
             () => console.log("terminou")
           );        
     }
 
     getAll() : Observable<any[]> {
-        return this.db.list('produtos')
+        return this.db.list('cadastros')
           .snapshotChanges()
           .pipe(
             map(changes => {
