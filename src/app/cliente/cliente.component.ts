@@ -50,7 +50,7 @@ export class ClienteComponent implements OnInit {
 
     carregar(cliente:Cliente) {
         this.cliente = new Cliente(cliente.key,
-            cliente.nome, cliente.dataNascimento);
+            cliente.nome, cliente.dataNascimento, cliente.descricao, cliente.quantidade);
     }
 
     excluir(key:string){

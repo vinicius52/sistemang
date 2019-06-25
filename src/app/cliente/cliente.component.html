@@ -19,6 +19,16 @@
         <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
         [(ngModel)]="cliente.dataNascimento">
     </div>
+    <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <input type="text" class="form-control" id="descricao" name="descricao"
+        [(ngModel)]="cliente.descricao">
+    </div>
+    <div class="form-group">
+        <label for="descricao">Quantidade</label>
+        <input type="number" class="form-control" id="quantidade" name="quantidade"
+        [(ngModel)]="cliente.quantidade">
+    </div>
     <button class="btn btn-primary" (click)="salvar()">Salvar</button> 
 </form>
 
@@ -28,6 +38,8 @@
             <th>ID</th>    
             <th>Nome</th>    
             <th>Data de Nascimento</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +47,8 @@
             <td>{{ cliente.key }}</td>
             <td>{{ cliente.nome }}</td>
             <td>{{ cliente.dataNascimento }}</td>
+            <td>{{ cliente.descricao }}</td>
+            <td>{{ cliente.quantidade }}</td>
             <td><button class="btn btn-primary"
                 (click)="carregar(cliente)">Alterar</button></td>
             <td><button class="btn btn-primary"
